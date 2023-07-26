@@ -1,0 +1,324 @@
+/*
+Name: Anan Alian
+ID: 1211529
+ */
+
+package project;
+
+import java.util.Scanner;
+
+public class Main {
+
+    // These variable represent seats
+    // False: the seat is not reserved
+    // True: The seat was reserved
+    static boolean set11 = false, set12 = false, set21 = false, set22 = false, set31 = false, set32 = false,
+            set41 = false, set42 = false, set51 = false, set52 = false;
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        displayChoices();
+        int number = input.nextInt();
+        // Read user choice, and determine which function will be call
+        while (number != 5) {
+            switch (number) {
+                case 1:
+                    // Call Reserve_Seat function
+                    Reserve_seat();
+                    break;
+                case 2:
+                    // Call Delete specific seat function
+                    Delete_reserved_seat();
+                    break;
+                case 3:
+                    // Call delete all seats function
+                    Delete_all_reserved_seats();
+                    break;
+                case 4:
+                    // Call print number of reserved seats function
+                    print_number_reserved();
+                    break;
+                default:
+                    // wrong choice
+                    System.out.println("please enter valid choice ");
+
+            }
+            displayChoices();
+            number = input.nextInt();
+
+        }
+
+        System.out.println("\nTHANK YOU _^_");
+
+    }
+
+    // Display menu for the user to select on of them
+    public static void displayChoices() {
+        System.out.println("\n1. Reserve a new empty seat");
+        System.out.println("2. Delete a reserved seat");
+        System.out.println("3. Delete all reserved seats.");
+        System.out.println("4. Print out number of reserved seats.");
+        System.out.println("5. Quit\n");
+    }
+
+    public static void print_number_reserved() {
+        int count = 0;
+        // calculate number of reserved seats for first four seats
+        count = getCount(count, set11, set12, set21, set22, set31);
+        // calculate the second four reserved seats
+        count = getCount(count, set32, set41, set42, set51, set52);
+        System.out.println("The number of reserved seats is " + count);
+
+    }
+
+    // calculate reserved seats
+    private static int getCount(int count, boolean set11, boolean set12, boolean set21, boolean set22, boolean set31) {
+        if (set11) {
+            count++;
+        }
+        if (set12) {
+            count++;
+        }
+        if (set21) {
+            count++;
+        }
+        if (set22) {
+            count++;
+        }
+        if (set31) {
+            count++;
+        }
+        return count;
+    }
+
+    // set all seats empty
+    public static void Delete_all_reserved_seats() {
+        set11 = false;
+        set12 = false;
+        set21 = false;
+        set22 = false;
+        set31 = false;
+        set32 = false;
+        set41 = false;
+        set42 = false;
+        set51 = false;
+        set52 = false;
+
+        System.out.println("Reserved seats have been removed");
+    }
+
+    public static void Delete_reserved_seat() {
+
+        // Check if all seats was empty
+        if (!set11 && !set12 && !set21 && !set22 && !set31 && !set32
+                && !set41 && !set42 && !set51 && !set52) {
+            System.out.println("All seats already not reserved");
+            return;
+        }
+
+        int seat_number;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the seat_number number you want to seat_number (11 , 12 , 21, 22 , 31 , 32 , 41 , 42 , 51 , 52)");
+        seat_number = input.nextInt();
+
+        while (true) {
+
+            // check if the entered seat_number was set11
+            if (seat_number == 11) {
+                // check if seat_number 11 was reserved or not
+                if (set11) {
+                    set11 = false;
+                    System.out.println("Seat 11 removed successfully");
+                    break;
+                } else
+                    System.out.println("the seat_number is not reserved ....enter the new seat_number");
+
+            } else if (seat_number == 12) {
+                if (set12) {
+                    set12 = false;
+                    System.out.println("Seat 12 removed successfully");
+                    break;
+                } else
+                    System.out.println("the seat_number is not reserved ...enter the new seat_number");
+
+            } else if (seat_number == 21) {
+                if (set21) {
+                    set21 = false;
+                    System.out.println("Seat 21 removed successfully");
+                    break;
+                } else
+                    System.out.println("the seat_number is not reserved ...enter the new seat_number");
+
+            } else if (seat_number == 22) {
+                if (set22) {
+                    set22 = false;
+                    System.out.println("Seat 22 removed successfully");
+                    break;
+                } else
+                    System.out.println("the seat_number is not reserved ...enter the new seat_number");
+
+            } else if (seat_number == 31) {
+                if (set31) {
+                    set31 = false;
+                    System.out.println("Seat 31 removed successfully");
+                    break;
+                } else
+                    System.out.println("the seat_number is not reserved ...enter the new seat_number");
+
+            } else if (seat_number == 32) {
+                if (set32) {
+                    set32 = false;
+                    System.out.println("Seat 32 removed successfully");
+                    break;
+                } else
+                    System.out.println("the seat_number is not reserved ...enter the new seat_number");
+
+            } else if (seat_number == 41) {
+                if (set41) {
+                    set41 = false;
+                    System.out.println("Seat 41 removed successfully");
+                    break;
+                } else
+                    System.out.println("the seat_number is not reserved ...enter the new seat_number");
+
+            } else if (seat_number == 42) {
+                if (set42) {
+                    set42 = false;
+                    System.out.println("Seat 42 removed successfully");
+                    break;
+                } else
+                    System.out.println("the seat_number is not reserved ...enter the new seat_number");
+
+            } else if (seat_number == 51) {
+                if (set51) {
+                    set51 = false;
+                    System.out.println("Seat 51 removed successfully");
+                    break;
+                } else
+                    System.out.println("the seat_number is not reserved ...enter the new seat_number");
+
+            } else if (seat_number == 52) {
+                if (set42) {
+                    set42 = false;
+                    System.out.println("Seat 52 removed successfully");
+                    break;
+                } else
+                    System.out.println("the seat_number is not reserved ...enter the new seat_number");
+
+            } else {
+                // Wrong seat_number number
+                System.out.println("Please enter valid seat_number number: ");
+            }
+
+            seat_number = input.nextInt();
+        }
+    }
+
+
+    // Reserve seat
+    public static void Reserve_seat() {
+        //Check if all seat was already reserved
+        if (set11 && set12 && set21 && set22 && set31 && set32 && set41 && set42 && set51 && set52) {
+            System.out.println("All seats was reserved!!!");
+            return;
+        }
+        int seat_number;
+        Scanner input = new Scanner(System.in);
+        System.out.println("please enter the number of seat (11 , 12 , 21, 22 , 31 , 32 , 41 , 42 , 51 , 52) ");
+        seat_number = input.nextInt();
+        while (true) {
+
+            if (seat_number == 11) {
+                if (set11) {
+                    System.out.println("this seat is reserved, enter new number seat: ");
+                } else {
+                    set11 = true;
+                    System.out.println("seat #11 was reserved successfully");
+                    break;
+                }
+            } else if (seat_number == 12) {
+                if (set12) {
+                    System.out.println("this seat is reserved, enter new number seat: ");
+                } else {
+                    set12 = true;
+                    System.out.println("seat #12 was reserved successfully");
+                    break;
+                }
+            } else if (seat_number == 21) {
+                if (set21) {
+                    System.out.println("this seat is reserved, enter new number seat: ");
+                } else {
+                    set21 = true;
+                    System.out.println("seat #21 was reserved successfully");
+                    break;
+                }
+            } else if (seat_number == 22) {
+                if (set22) {
+                    System.out.println("this seat is reserved, enter new number seat: ");
+                } else {
+                    set22 = true;
+                    System.out.println("seat #22 was reserved successfully");
+                    break;
+                }
+            } else if (seat_number == 31) {
+                if (set31) {
+                    System.out.println("this seat is reserved, enter new number seat: ");
+                } else {
+                    set31 = true;
+                    System.out.println("seat #31 was reserved successfully");
+                    break;
+                }
+            } else if (seat_number == 32) {
+                if (set32) {
+                    System.out.println("this seat is reserved, enter new number seat: ");
+                } else {
+                    set32 = true;
+                    System.out.println("seat #32 was reserved successfully");
+                    break;
+                }
+            } else if (seat_number == 41) {
+                if (set41) {
+                    System.out.println("this seat is reserved, enter new number seat: ");
+                } else {
+                    set41 = true;
+                    System.out.println("seat #41 was reserved successfully");
+                    break;
+                }
+            } else if (seat_number == 42) {
+                if (set42) {
+                    System.out.println("this seat is reserved, enter new number seat: ");
+                } else {
+                    set42 = true;
+                    System.out.println("seat #42 was reserved successfully");
+                    break;
+                }
+            } else if (seat_number == 51) {
+                if (set51) {
+                    System.out.println("this seat is reserved, enter new number seat: ");
+                } else {
+                    set51 = true;
+                    System.out.println("seat #51 was reserved successfully");
+                    break;
+                }
+            } else if (seat_number == 52) {
+                if (set52) {
+                    System.out.println("this seat is reserved, enter new number seat: ");
+                } else {
+                    set52 = true;
+                    System.out.println("seat #52 was reserved successfully");
+                    break;
+                }
+
+            } else {
+                System.out.println("Plese enter valid seat number: ");
+            }
+
+            seat_number = input.nextInt();
+
+        }
+
+    }
+}
+
+

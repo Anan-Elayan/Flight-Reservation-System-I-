@@ -1,0 +1,228 @@
+import java.util.Scanner;
+
+public class PhaseI {
+
+	// flags to determine if a seat is reserved or not
+	static boolean f11, f12, f21, f22, f31, f32, f41, f42, f51, f52;
+	// counter to keep track of the number of reserved seats.
+	static int counter = 0;
+
+	public static void main(String[] args) {
+		while (true) {
+			int n = showMenu();
+			switch (n) {
+			case 1: // reserve New Seat
+				reserveNewSeat();
+				break;
+			case 2: // delete Reserved Seat
+				deleteReservedSeat();
+				break;
+			case 3: // delete All Reserved Seats
+				System.out.println("All the reserved seats are deleted!!\n\n");
+				deleteAllReservedSeats();
+				break;
+			case 4: // Print out number of reserved seats.
+				System.out.println("You have " + counter + " reserved seats.\n\n");
+				break;
+			case 5: // Exist
+				System.out.println("Good Bye!!!");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Error: input is invalid!!");
+			}
+		}
+	}
+
+	// show the main menu
+	static int showMenu() {
+		System.out.println("****************************************");
+		System.out.println("1.	Reserve a new empty seat.");
+		System.out.println("2.	Delete a reserved seat.");
+		System.out.println("3.	Delete all reserved seats.");
+		System.out.println("4.	Print out number of reserved seats.");
+		System.out.println("5.	Quit.");
+		System.out.println("****************************************");
+		System.out.print("Enter a number 1-5: ");
+		Scanner input = new Scanner(System.in);
+		return input.nextInt();
+	}
+
+	// delete All Reserved Seats
+	static void deleteAllReservedSeats() {
+		f11 = false;
+		f12 = false;
+		f21 = false;
+		f22 = false;
+		f31 = false;
+		f32 = false;
+		f41 = false;
+		f42 = false;
+		f51 = false;
+		f52 = false;
+		counter = 0;
+	}
+
+	// delete Reserved Seat
+	static void deleteReservedSeat() {
+		if (counter > 0) {
+			System.out.println("\nDelete a reserved seat:");
+			while (true) {
+				System.out.print("Please enter seat number (11,12,21,22,31,32,41,42,51,52) : ");
+				Scanner input = new Scanner(System.in);
+				int seatNum = input.nextInt();
+				if (isValid(seatNum)) {
+					if (!isEmpty(seatNum)) {
+						delete(seatNum);
+						System.out.println("Seat " + seatNum + " is successfully unreserved!!!\n\n");
+						counter--;
+						break;
+					} else
+						System.out.println("Error: seat " + seatNum + " is empty!!!\n");
+
+				} else {
+					System.out.println("Error: seat number is invalid. \nPlease try again!!\n");
+					System.out.println("Please try again!!!\n\n");
+				}
+			}
+		} else
+			System.out.println("Sorry: there are no reserved seats to be deleted!!!\n\n");
+	}
+
+	// reserve New Seat
+	static void reserveNewSeat() {
+		if (counter < 10) {
+			System.out.println("\nReserve a new empty seat:");
+			while (true) {
+				System.out.print("Please enter seat number (11,12,21,22,31,32,41,42,51,52): ");
+				Scanner input = new Scanner(System.in);
+				int seatNum = input.nextInt();
+				if (isValid(seatNum)) {
+					if (isEmpty(seatNum)) {
+						reserve(seatNum);
+						System.out.println("Seat " + seatNum + " is successfully reserved!!!\n\n");
+						counter++;
+						break;
+					} else
+						System.out.println("Error: seat " + seatNum + " is not empty!!!\n");
+
+				} else {
+					System.out.println("Error: seat number is invalid.");
+					System.out.println("Please try again!!!\n");
+				}
+			}
+		} else
+			System.out.println("Sorry, All seats are reserved!!!\n\n");
+	}
+
+	// check if a seat number is valid or not
+	static boolean isValid(int n) {
+		return (n == 11 || n == 12 || n == 21 || n == 22 || n == 31 || n == 32 || n == 41 || n == 42 || n == 51
+				|| n == 52);
+	}
+
+	// check if a seat number is empty or reserved
+	static boolean isEmpty(int n) {
+		switch (n) {
+		case 11:
+			return !f11;
+		case 12:
+			return !f12;
+		case 21:
+			return !f21;
+		case 22:
+			return !f22;
+		case 31:
+			return !f31;
+		case 32:
+			return !f32;
+		case 41:
+			return !f41;
+		case 42:
+			return !f42;
+		case 51:
+			return !f51;
+		case 52:
+			return !f52;
+		}
+		System.out.println("Error: invalid seat number!!!");
+		return false;
+	}
+
+	// set a seat number is reserved
+	static void reserve(int n) {
+		switch (n) {
+		case 11:
+			f11 = true;
+			break;
+		case 12:
+			f12 = true;
+			break;
+		case 21:
+			f21 = true;
+			break;
+		case 22:
+			f22 = true;
+			break;
+		case 31:
+			f31 = true;
+			break;
+		case 32:
+			f32 = true;
+			break;
+		case 41:
+			f41 = true;
+			break;
+		case 42:
+			f42 = true;
+			break;
+		case 51:
+			f51 = true;
+			break;
+		case 52:
+			f52 = true;
+			break;
+		default:
+			System.out.println("Error: invalid seat number!!!");
+		}
+	}
+
+	// set a seat number is empty
+	static void delete(int n) {
+		switch (n) {
+		case 11:
+			f11 = false;
+			break;
+		case 12:
+			f12 = false;
+			break;
+		case 21:
+			f21 = false;
+			break;
+		case 22:
+			f22 = false;
+			break;
+		case 31:
+			f31 = false;
+			break;
+		case 32:
+			f32 = false;
+			break;
+		case 41:
+			f41 = false;
+			break;
+		case 42:
+			f42 = false;
+			break;
+		case 51:
+			f51 = false;
+			break;
+		case 52:
+			f52 = false;
+			break;
+		default:
+			System.out.println("Error: invalid seat number!!!");
+		}
+	}
+
+}
